@@ -29,6 +29,12 @@ export class Home extends Component {
     articles.filter(article => article.slug === filterBy);
   };
 
+  // handleSort = event => {
+  //   const { value } = event.target;
+  //   const { articles, sortBy } = this.state;
+  //   this.setState({ sortBy: value });
+  // };
+
   render() {
     const { articles, topics, filterBy } = this.state;
     const chosenArticles = articles
