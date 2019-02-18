@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+// import { Link } from "@reach/router";
 import PropTypes from "prop-types";
 
 export class Sidebar extends Component {
+  state = {
+    userText: "",
+    showArticleAdder: false
+  };
+
   render() {
     return <div>SIDEBAR</div>;
   }
