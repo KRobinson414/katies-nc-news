@@ -1,6 +1,7 @@
 # 'Must Have' User Stories
 
-- As a user, I should be able to view a list of all articles.
+x As a user, I should be able to view a list of all articles.
+
 - As a user, I should be able to view a list of all articles on a specific topic.
 - As a user, I should be able to view an individual article.
 - As a user, I should be able to view an individual article's comments.

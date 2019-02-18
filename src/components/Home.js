@@ -22,6 +22,13 @@ export class Home extends Component {
     });
   }
 
+  handleFilter = event => {
+    const { value } = event.target;
+    const { articles, filterBy } = this.state;
+    this.setState({ filterBy: value });
+    articles.filter(article => article.slug === filterBy);
+  };
+
   render() {
     const { articles, topics, filterBy } = this.state;
     const chosenArticles = articles
