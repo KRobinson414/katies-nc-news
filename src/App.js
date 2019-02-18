@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar user={user} setUser={this.setUser} />
-        <div className="App-body">
+        <div className="App-container">
           <Router>
             <Home path="/" setUser={this.setUser} />
             <Article
@@ -46,6 +46,7 @@ class App extends Component {
           <div className="App-sidebar">
             <Sidebar user={user} setUser={this.setUser} />
           </div>
+          <div className="App-body" />
         </div>
       </div>
     );
