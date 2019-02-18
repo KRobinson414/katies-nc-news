@@ -1,0 +1,162 @@
+.article {
+  display: grid;
+  text-align: justify;
+  margin: 30px;
+  margin-top: 10px;
+  padding: 30px;
+  font-size: 23px;
+  border: 5px solid #b6d094;
+  background-color: antiquewhite;
+  color: #373f51;
+}
+
+.article h1 {
+  text-align: left;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+.article-header {
+  display: grid;
+  grid-template-columns: 10vw auto 10vw;
+  grid-template-rows: 120px;
+  grid-template-areas: "topic null vote";
+}
+
+#topic {
+  grid-area: topic;
+  font-size: 20px;
+  text-align: left;
+  margin-right: 10px;
+  margin-left: 30px;
+  margin-bottom: 5px;
+  margin-top: 70px;
+}
+
+#article-vote {
+  grid-area: vote;
+  justify-content: center;
+  align-content: center;
+  padding-top: 20px;
+}
+
+#article-vote-no {
+  font-size: 25px;
+  margin: 5px;
+  margin-top: 0px;
+  color: #b6d094;
+}
+
+.vote-button {
+  background-color: #b6d094;
+  color: #373f51;
+}
+
+.delete {
+  text-align: right;
+}
+
+.comment-delete {
+  text-align: right;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+
+.author {
+  color: #92b95f;
+  text-align: right;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-right: 10px;
+  padding: 0px;
+}
+
+.date {
+  color: #92b95f;
+  text-align: right;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  padding: 0px;
+}
+
+#add-comment {
+  font-size: 25px;
+  border: 2px solid #b6d094;
+  border-radius: 10px 10px 10px 10px;
+  color: #b6d094;
+  background-color: #373f51;
+  padding: 10px;
+}
+
+.comments {
+  display: grid;
+}
+
+.comment-card {
+  display: grid;
+  grid-template-columns: 10vw auto 5vw;
+  grid-template-rows: auto;
+  grid-template-areas: "author body vote";
+  text-align: left;
+  margin: 15px;
+  padding: 10px;
+  font-size: 15px;
+  color: antiquewhite;
+}
+
+#comment-author {
+  grid-area: author;
+  font-size: 15px;
+  color: #92b95f;
+  text-align: center;
+  align-self: center;
+  padding-right: 15px;
+  overflow-wrap: break-word;
+}
+
+#comment-author-small {
+  display: none;
+}
+
+#comment-body {
+  margin: 20px;
+  grid-area: body;
+}
+
+#comment-vote {
+  grid-area: vote;
+  text-align: center;
+  align-self: center;
+}
+
+#comment-vote-no {
+  font-size: 18px;
+  padding: 5px;
+  margin: 0px;
+  margin-bottom: 5px;
+  color: #b6d094;
+}
+
+@media only screen and (max-width: 768px) {
+  .comment-card {
+    display: grid;
+    grid-template-columns: auto 10vw;
+    grid-template-rows: auto;
+    grid-template-areas: "body vote";
+    text-align: left;
+    margin: 15px;
+    padding: 10px;
+    font-size: 15px;
+    color: antiquewhite;
+  }
+  #comment-author {
+    display: none;
+  }
+  #comment-author-small {
+    align-self: right;
+    display: initial;
+    position: absolute;
+  }
+}

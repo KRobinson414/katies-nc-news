@@ -1,0 +1,70 @@
+.header {
+  grid-area: header;
+  font-size: 4.5em;
+  margin: 50px;
+  margin-bottom: 30px;
+}
+
+.sort .filter {
+  font-size: 50px;
+  margin: 20px;
+}
+
+.article-card-text {
+  grid-area: text;
+  font-size: 30px;
+  color: black;
+}
+
+#article-link {
+  color: black;
+  font-size: 30px;
+}
+
+#article-link:hover {
+  color: #373f51;
+}
+
+.subtext {
+  text-align: left;
+  font-size: 25px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.sub-subtext {
+  text-align: left;
+  font-size: 15px;
+  margin-right: 15px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.article-card-author {
+  grid-area: author;
+  font-size: 15px;
+  color: #92b95f;
+  text-align: center;
+  align-self: center;
+  padding-right: 15px;
+  overflow-wrap: break-word;
+}
+
+#article-card {
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "header header" "author text";
+  text-align: left;
+  border: 5px solid #b6d094;
+  background-color: antiquewhite;
+  margin: 15px;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+#article-card a {
+  text-decoration: none;
+}
