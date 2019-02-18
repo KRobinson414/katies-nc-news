@@ -1,25 +1,52 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Router } from "@reach/router";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Article from "./components/Article";
+import Users from "./components/Users";
+import TopicAdder from "./components/TopicAdder";
+import ArticleAdder from "./components/ArticleAdder";
+import NotFound from "./components/NotFound";
+import BadRequest from "./components/BadRequest";
+import Sidebar from "./components/Sidebar";
+
+import "./App.css";
 
 class App extends Component {
+  state = {
+    user: null
+  };
+
+  setUser = user => {
+    this.setState({
+      user
+    });
+  };
+
   render() {
+    const { user } = this.state;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Navbar user={user} setUser={this.setUser} />
+        <div className="App-body">
+          <Router>
+            <Home path="/" setUser={this.setUser} />
+            <Article
+              path="/articles/:article_id"
+              user={user}
+              setUser={this.setUser}
+            />
+            <Users path="/users" user={user} setUser={this.setUser} />
+            <TopicAdder path="/add-topic" user={user} />
+            <ArticleAdder path="/add-article" user={user} />
+            <NotFound path="/not-found" />
+            <BadRequest path="/bad-request" />
+          </Router>
+          <div className="App-sidebar">
+            <Sidebar user={user} setUser={this.setUser} />
+          </div>
+        </div>
       </div>
     );
   }
