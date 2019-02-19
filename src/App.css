@@ -75,6 +75,15 @@ textarea {
   color: #b6d094;
 }
 
+#incorrect-user {
+  font-size: 15px;
+  color: red;
+  border: 1px red solid;
+  background: antiquewhite;
+  padding: 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
 .App-body {
   grid-area: body;
   width: 95%;

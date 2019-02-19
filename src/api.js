@@ -5,3 +5,8 @@ export const fetchData = async url => {
   const { data } = await axios.get(`${baseURL}/${url}`);
   return data;
 };
+
+export const fetchUserByUsername = async username => {
+  const { data } = await axios.get(`${baseURL}/users/${username}`);
+  return data;
+};
