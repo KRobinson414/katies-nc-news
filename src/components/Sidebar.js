@@ -9,6 +9,12 @@ export class Sidebar extends Component {
     showArticleAdder: false
   };
 
+  handleLogout = event => {
+    const { setUser } = this.props;
+    event.preventDefault();
+    setUser();
+  };
+
   render() {
     const { user, setUser } = this.props;
 
