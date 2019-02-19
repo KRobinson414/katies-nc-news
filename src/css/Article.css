@@ -58,8 +58,8 @@
 
 .comment-delete {
   text-align: right;
-  margin-bottom: 10px;
-  font-size: 10px;
+  margin-bottom: -15px;
+  margin-right: 10px;
 }
 
 .author {
@@ -108,7 +108,7 @@
 
 #comment-author {
   grid-area: author;
-  font-size: 18px;
+  font-size: 20px;
   color: #92b95f;
   padding-bottom: 3px;
 }

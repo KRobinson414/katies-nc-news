@@ -20,8 +20,20 @@ export const deleteItem = async (article_id, comment_id) => {
   const url = comment_id
     ? `${baseURL}/articles/${article_id}/comments/${comment_id}`
     : `${baseURL}/articles/${article_id}`;
-  return axios({
+  return await axios({
     method: "delete",
     url
+  });
+};
+
+export const addComment = async (article_id, user, body) => {
+  const { username } = user;
+  return await axios({
+    method: "post",
+    url: `${baseURL}/articles/${article_id}/comments`,
+    data: {
+      created_by: username,
+      body
+    }
   });
 };

@@ -84,6 +84,10 @@ textarea {
   border-radius: 5px 5px 5px 5px;
 }
 
+.loginAlert {
+  font-size: 20px;
+}
+
 .App-body {
   grid-area: body;
   width: 95%;

@@ -36,7 +36,7 @@ export class CommentCard extends Component {
         <div id="comment-body">
           {showDelete && (
             <div className="comment-delete">
-              <button onClick={this.handleDelete}>Delete</button>
+              <button onClick={this.handleDelete}>X</button>
             </div>
           )}
           <div id="comment-author">{comment.author} says...</div>

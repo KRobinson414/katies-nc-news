@@ -6,7 +6,6 @@ import userAvatar from "../images/man(3).png";
 
 const Sidebar = ({ user, setUser }) => {
   const handleLogout = event => {
-    const { setUser } = this.props;
     event.preventDefault();
     setUser();
   };
