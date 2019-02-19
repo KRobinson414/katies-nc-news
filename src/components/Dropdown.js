@@ -19,7 +19,7 @@ const Dropdown = ({ options, onSelect }) => {
 
 Dropdown.propTypes = {
   options: PropTypes.array.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func
 };
 
 export default Dropdown;

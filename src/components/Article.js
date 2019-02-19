@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { navigate } from "@reach/router";
 import PropTypes from "prop-types";
+import { fetchArticleById, fetchData } from "../api";
 
 export class Article extends Component {
   state = {
@@ -8,6 +10,25 @@ export class Article extends Component {
     showCommentAdder: false,
     showDelete: false
   };
+
+  componentDidMount() {
+    const { article_id, user } = this.props;
+    user &&
+      fetchArticleById(article_id)
+        .then(({ article }) => {
+          if (user.username === article.author) {
+            this.setState({ article, showDelete: true });
+          } else {
+            this.setState({ article });
+          }
+        })
+        .catch(() => {
+          navigate("/not-found");
+        });
+    fetchData(`articles/${article_id}/comments`).then(({ comments }) => {
+      this.setState({ comments });
+    });
+  }
 
   render() {
     return <div>ARTICLE</div>;

@@ -21,11 +21,7 @@ export class ArticleCard extends Component {
     return (
       <div id="article-card">
         <span className="article-card-text">
-          <Link
-            id="article-link"
-            to={`/articles/${article.article_id}`}
-            key={article.article_id}
-          >
+          <Link id="article-link" to={`/articles/${article.article_id}`}>
             {article.title}
           </Link>
           <div className="subtext">

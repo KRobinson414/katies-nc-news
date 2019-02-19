@@ -6,9 +6,11 @@ x As a user, I should be able to view a list of all articles on a specific topic
 - As a user, I should be able to view an individual article.
 - As a user, I should be able to view an individual article's comments.
 - As a user, I should be able to sort articles by date created, comment_count & votes
-- As a hiring partner with no access to my laptop, I should be able to use the site on my mobile without sacrificing style or functionality.
-- As a user, I should be able to login to the site.
-- As a hiring partner with no knowledge of the users in the database, it should be very clear to me how I can login to the site.
+
+x As a hiring partner with no access to my laptop, I should be able to use the site on my mobile without sacrificing style or functionality.
+x As a user, I should be able to login to the site.
+x As a hiring partner with no knowledge of the users in the database, it should be very clear to me how I can login to the site.
+
 - As a logged in user, I should be able to post a new article to an existing topic.
 - As a logged in user, I should be able to post a new article to a new topic.
 - As a logged in user, I should be able to post a new comment to an existing article.
@@ -35,7 +37,5 @@ x As a user, I should be able to view a list of all articles on a specific topic
 
 # Note regarding BOLD user stories:
 
-Infinite scroll / pagination to be covered in Tuesday's lecture
-User login / auth to be covered in Tuesday's lecture
 Voting / optimistic rendering to be covered in Wednesday's lecture
 Error handling / error pages to be covered in Thursday's lecture

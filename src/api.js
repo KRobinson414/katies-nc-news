@@ -10,3 +10,8 @@ export const fetchUserByUsername = async username => {
   const { data } = await axios.get(`${baseURL}/users/${username}`);
   return data;
 };
+
+export const fetchArticleById = async id => {
+  const { data } = await axios.get(`${baseURL}/articles/${id}`);
+  return data;
+};

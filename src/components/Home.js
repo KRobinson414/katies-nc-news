@@ -65,7 +65,9 @@ export class Home extends Component {
           </span>
         </div>
         {articles ? (
-          chosenArticles.map(article => <ArticleCard article={article} />)
+          chosenArticles.map(article => (
+            <ArticleCard key={article.article_id} article={article} />
+          ))
         ) : (
           <p>Loading...</p>
         )}
