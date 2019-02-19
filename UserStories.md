@@ -13,7 +13,9 @@ x As a hiring partner with no knowledge of the users in the database, it should 
 
 - As a logged in user, I should be able to post a new article to an existing topic.
 - As a logged in user, I should be able to post a new article to a new topic.
-- As a logged in user, I should be able to post a new comment to an existing article.
+
+x As a logged in user, I should be able to post a new comment to an existing article.
+
 - As a logged in user, I should be able to vote on an article.
 - As a logged in user, I should be able to vote on a comment.
 
