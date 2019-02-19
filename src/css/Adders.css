@@ -1,0 +1,22 @@
+.adder {
+  font-size: 20px;
+}
+
+.text-input {
+  margin: 20px;
+  margin-bottom: 30px;
+}
+
+.label {
+  font-size: 18px;
+}
+
+.new-topic {
+  margin: 20px;
+  margin-top: 60px;
+}
+
+.new-topic-des {
+  margin: 20px;
+  vertical-align: top;
+}

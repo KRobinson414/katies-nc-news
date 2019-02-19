@@ -37,3 +37,14 @@ export const addComment = async (article_id, user, body) => {
     }
   });
 };
+
+export const addTopic = async (slug, description) => {
+  return await axios({
+    method: "post",
+    url: `${baseURL}/topics`,
+    data: {
+      slug,
+      description
+    }
+  });
+};
