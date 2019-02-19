@@ -31,6 +31,10 @@ export class Article extends Component {
   }
 
   render() {
+    const { article, comments, showDelete } = this.state;
+    const { user, setUser } = this.props;
+    const date = Date(article.created_at).slice(0, 21);
+
     return <div>ARTICLE</div>;
   }
 }
