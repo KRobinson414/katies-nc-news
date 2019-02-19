@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
+import PropTypes from "prop-types";
 import { fetchUserByUsername } from "../api";
 
 export class Auth extends Component {
@@ -58,5 +59,14 @@ export class Auth extends Component {
       );
   }
 }
+
+Auth.propTypes = {
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    avatar_url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  }),
+  setUser: PropTypes.func.isRequired
+};
 
 export default Auth;

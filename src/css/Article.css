@@ -108,16 +108,14 @@
 
 #comment-author {
   grid-area: author;
-  font-size: 15px;
+  font-size: 18px;
   color: #92b95f;
-  text-align: center;
-  align-self: center;
-  padding-right: 15px;
-  overflow-wrap: break-word;
+  padding-bottom: 3px;
 }
 
-#comment-author-small {
-  display: none;
+#comment-author-image {
+  align-self: center;
+  justify-self: center;
 }
 
 #comment-body {
@@ -151,12 +149,7 @@
     font-size: 15px;
     color: antiquewhite;
   }
-  #comment-author {
+  #comment-author-image {
     display: none;
-  }
-  #comment-author-small {
-    align-self: right;
-    display: initial;
-    position: absolute;
   }
 }
