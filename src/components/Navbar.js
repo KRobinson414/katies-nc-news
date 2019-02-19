@@ -23,6 +23,7 @@ export class Navbar extends Component {
     if (showMenu) {
       this.setState({ showMenu: false });
     }
+    console.log(showMenu);
   };
 
   render() {

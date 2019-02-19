@@ -42,10 +42,6 @@
   font-size: 50px;
 }
 
-#menu {
-  display: none;
-}
-
 @media only screen and (max-width: 768px) {
   #nav-bar {
     grid-template-columns: 20vw auto;

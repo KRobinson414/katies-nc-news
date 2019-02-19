@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-// import { Link } from "@reach/router";
 import PropTypes from "prop-types";
+import Login from "./Login";
+import userAvatar from "../images/man(3).png";
 
 export class Sidebar extends Component {
   state = {
@@ -9,7 +10,41 @@ export class Sidebar extends Component {
   };
 
   render() {
-    return <div>SIDEBAR</div>;
+    const { user, setUser } = this.props;
+
+    return (
+      <div className="App-sidebar">
+        {user ? (
+          <div>
+            <img
+              className="image"
+              src={user.avatar_url}
+              alt="User avatar"
+              width="80%"
+              height="auto"
+            />
+            <p id="welcome">Welcome back {user.username}!</p>
+            <p>
+              <button id="logout" onClick={this.handleLogout}>
+                Logout
+              </button>
+            </p>
+          </div>
+        ) : (
+          <div>
+            <img
+              className="image"
+              src={userAvatar}
+              alt="Unknown user"
+              width="80%"
+              height="auto"
+            />
+            <p>Login to your account:</p>
+            <Login setUser={setUser} />
+          </div>
+        )}
+      </div>
+    );
   }
 }
 
