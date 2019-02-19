@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import PropTypes from "prop-types";
-import { fetchArticleById, fetchData } from "../api";
+import { fetchArticleById, fetchData, deleteItem } from "../api";
 import Auth from "./Auth";
 import Vote from "./Vote";
 import CommentAdder from "./CommentAdder";
@@ -21,11 +21,9 @@ export class Article extends Component {
     user &&
       fetchArticleById(article_id)
         .then(({ article }) => {
-          if (user.username === article.author) {
-            this.setState({ article, showDelete: true });
-          } else {
-            this.setState({ article });
-          }
+          user.username === article.author
+            ? this.setState({ article, showDelete: true })
+            : this.setState({ article });
         })
         .catch(() => {
           navigate("/not-found");
@@ -34,6 +32,27 @@ export class Article extends Component {
       this.setState({ comments });
     });
   }
+
+  toggleCommentInput = event => {
+    const { showCommentAdder } = this.state;
+    event.preventDefault();
+    showCommentAdder
+      ? this.setState({ showCommentAdder: false })
+      : this.setState({ showCommentAdder: true });
+  };
+
+  updateComments = () => {
+    const { article_id } = this.state.article;
+    fetchData(`articles/${article_id}/comments`).then(({ comments }) => {
+      this.setState({ comments });
+    });
+  };
+
+  handleDelete = event => {
+    const { article_id } = this.state.article;
+    event.preventDefault();
+    deleteItem(article_id, null).then(() => navigate("/"));
+  };
 
   render() {
     const { article, comments, showDelete, showCommentAdder } = this.state;
