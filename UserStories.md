@@ -10,10 +10,8 @@ x As a user, I should be able to view an individual article's comments.
 x As a hiring partner with no access to my laptop, I should be able to use the site on my mobile without sacrificing style or functionality.
 x As a user, I should be able to login to the site.
 x As a hiring partner with no knowledge of the users in the database, it should be very clear to me how I can login to the site.
-
-- As a logged in user, I should be able to post a new article to an existing topic.
-- As a logged in user, I should be able to post a new article to a new topic.
-
+x As a logged in user, I should be able to post a new article to an existing topic.
+x As a logged in user, I should be able to post a new article to a new topic.
 x As a logged in user, I should be able to post a new comment to an existing article.
 x As a logged in user, I should be able to vote on an article.
 x As a logged in user, I should be able to vote on a comment.
@@ -39,5 +37,4 @@ x As a logged in user, I should be able to delete my own comments.
 
 # Note regarding BOLD user stories:
 
-Voting / optimistic rendering to be covered in Wednesday's lecture
 Error handling / error pages to be covered in Thursday's lecture

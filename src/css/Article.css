@@ -56,6 +56,11 @@
   font-size: 18px;
 }
 
+.vote-button:disabled {
+  background-color: grey;
+  border-color: grey;
+}
+
 .delete {
   text-align: right;
 }

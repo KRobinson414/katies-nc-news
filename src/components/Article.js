@@ -47,7 +47,7 @@ export class Article extends Component {
   updateComments = () => {
     const { article_id } = this.state.article;
     fetchData(`articles/${article_id}/comments`).then(({ comments }) => {
-      this.setState({ comments });
+      this.setState({ comments, showCommentAdder: false });
     });
   };
 

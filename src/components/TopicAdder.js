@@ -25,8 +25,8 @@ export class TopicAdder extends Component {
   };
 
   handleChange = event => {
-    const { value } = event.target;
-    this.setState({ topic: value });
+    const { value, name } = event.target;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = event => {
@@ -37,7 +37,6 @@ export class TopicAdder extends Component {
         navigate("/add-article", { state: { topic: newTopic } });
       });
     } else {
-      console.log(topic);
       navigate("/add-article", { state: { topic: topic } });
     }
   };
@@ -57,7 +56,7 @@ export class TopicAdder extends Component {
             {topics && (
               <Dropdown
                 className="dropdown"
-                options={("select", [...topics.map(topic => topic.slug)])}
+                options={[" ", ...topics.map(topic => topic.slug)]}
                 onSelect={this.handleSelect}
                 required
               />

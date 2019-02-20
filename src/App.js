@@ -17,11 +17,25 @@ class App extends Component {
     user: null
   };
 
+  componentDidMount() {
+    this.hydrateStateWithLocalStorage();
+  }
+
   setUser = user => {
     this.setState({
       user
     });
+    localStorage.setItem("user", JSON.stringify(user));
   };
+
+  hydrateStateWithLocalStorage() {
+    for (let key in this.state) {
+      if (localStorage.hasOwnProperty(key)) {
+        let value = JSON.parse(localStorage.getItem(key));
+        this.setState({ [key]: value });
+      }
+    }
+  }
 
   render() {
     const { user } = this.state;

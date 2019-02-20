@@ -6,8 +6,7 @@ import { addArticle } from "../api";
 export class ArticleAdder extends Component {
   state = {
     title: "",
-    body: "",
-    isErr: false
+    body: ""
   };
 
   handleChange = event => {
@@ -25,7 +24,8 @@ export class ArticleAdder extends Component {
         const { article_id } = data.article;
         navigate(`articles/${article_id}`);
       })
-      .catch(() => {
+      .catch(err => {
+        console.log(err);
         navigate("bad-request");
       });
   };
