@@ -48,6 +48,7 @@ export class Vote extends Component {
 
 Vote.propTypes = {
   article_id: PropTypes.number.isRequired,
+  comment_id: PropTypes.number,
   author: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired

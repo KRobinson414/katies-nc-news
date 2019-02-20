@@ -28,7 +28,7 @@ export class CommentCard extends Component {
   };
 
   render() {
-    const { comment } = this.props;
+    const { comment, user } = this.props;
     const { showDelete } = this.state;
 
     return (
@@ -55,6 +55,8 @@ export class CommentCard extends Component {
           article_id={comment.article_id}
           votes={comment.votes}
           comment_id={comment.comment_id}
+          author={comment.author}
+          username={user.username}
         />
       </div>
     );
