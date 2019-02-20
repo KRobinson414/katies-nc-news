@@ -31,14 +31,16 @@ export class TopicAdder extends Component {
 
   handleSubmit = event => {
     const { topic, newTopic, newTopicDes } = this.state;
+    event.preventDefault();
     if (newTopic) {
+      console.log(newTopic);
       addTopic(newTopic, newTopicDes).then(() => {
         navigate("/add-article");
       });
     } else {
-      this.setState({ topic }).then(() => {
-        navigate("/add-article");
-      });
+      console.log(topic);
+      this.setState({ topic });
+      navigate("/add-article");
     }
   };
 

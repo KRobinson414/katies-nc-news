@@ -10,7 +10,8 @@ export class Home extends Component {
     topics: [],
     articles: [],
     filterBy: "all topics",
-    sortBy: "most recent"
+    sortBy: "most recent",
+    isLoading: true
   };
 
   componentDidMount() {
@@ -18,7 +19,7 @@ export class Home extends Component {
       this.setState({ topics });
     });
     fetchData("articles").then(({ articles }) => {
-      this.setState({ articles });
+      this.setState({ articles, isLoading: false });
     });
   }
 
@@ -36,12 +37,13 @@ export class Home extends Component {
   // };
 
   render() {
-    const { articles, topics, filterBy } = this.state;
+    const { articles, topics, filterBy, isLoading } = this.state;
     const chosenArticles = articles
       ? filterBy === "all topics"
         ? articles
         : articles.filter(article => article.topic === filterBy)
       : "";
+    if (isLoading) return <h3>Loading articles...</h3>;
 
     return (
       <div className="App-body">
@@ -64,13 +66,10 @@ export class Home extends Component {
             />
           </span>
         </div>
-        {articles ? (
+        {articles &&
           chosenArticles.map(article => (
             <ArticleCard key={article.article_id} article={article} />
-          ))
-        ) : (
-          <p>Loading...</p>
-        )}
+          ))}
       </div>
     );
   }

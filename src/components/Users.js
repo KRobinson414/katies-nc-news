@@ -5,23 +5,25 @@ import "../css/Users.css";
 
 export class Users extends Component {
   state = {
-    users: []
+    users: [],
+    isLoading: true
   };
 
   componentDidMount() {
     fetchData("users").then(({ users }) => {
-      this.setState({ users });
+      this.setState({ users, isLoading: false });
     });
   }
 
   render() {
-    const { users } = this.state;
+    const { users, isLoading } = this.state;
+    if (isLoading) return <h3>Loading users...</h3>;
 
     return (
       <div className="App-body">
         <h1>Users</h1>
         <div className="users">
-          {users ? (
+          {users &&
             users.map(user => (
               <div key={user.username} id="user-card">
                 <p>
@@ -29,10 +31,7 @@ export class Users extends Component {
                 </p>
                 <p>{user.username}</p>
               </div>
-            ))
-          ) : (
-            <p>Loading ussers...</p>
-          )}
+            ))}
         </div>
       </div>
     );

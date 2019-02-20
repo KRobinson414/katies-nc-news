@@ -13,7 +13,8 @@ export class Article extends Component {
     article: {},
     comments: [],
     showCommentAdder: false,
-    showDelete: false
+    showDelete: false,
+    isLoading: true
   };
 
   componentDidMount() {
@@ -22,8 +23,8 @@ export class Article extends Component {
       fetchArticleById(article_id)
         .then(({ article }) => {
           user.username === article.author
-            ? this.setState({ article, showDelete: true })
-            : this.setState({ article });
+            ? this.setState({ article, showDelete: true, isLoading: false })
+            : this.setState({ article, isLoading: false });
         })
         .catch(() => {
           navigate("/not-found");
@@ -55,9 +56,16 @@ export class Article extends Component {
   };
 
   render() {
-    const { article, comments, showDelete, showCommentAdder } = this.state;
+    const {
+      article,
+      comments,
+      showDelete,
+      showCommentAdder,
+      isLoading
+    } = this.state;
     const { user, setUser } = this.props;
     const date = Date(article.created_at).slice(0, 21);
+    if (isLoading) return <h3>Loading article...</h3>;
 
     return (
       <Auth user={user} setUser={setUser}>
