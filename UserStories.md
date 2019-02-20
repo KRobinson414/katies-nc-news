@@ -15,10 +15,8 @@ x As a hiring partner with no knowledge of the users in the database, it should 
 - As a logged in user, I should be able to post a new article to a new topic.
 
 x As a logged in user, I should be able to post a new comment to an existing article.
-
-- As a logged in user, I should be able to vote on an article.
-- As a logged in user, I should be able to vote on a comment.
-
+x As a logged in user, I should be able to vote on an article.
+x As a logged in user, I should be able to vote on a comment.
 x As a logged in user, I should be able to delete my own articles.
 x As a logged in user, I should be able to delete my own comments.
 

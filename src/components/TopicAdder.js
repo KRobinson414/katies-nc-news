@@ -25,8 +25,8 @@ export class TopicAdder extends Component {
   };
 
   handleChange = event => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
+    const { value } = event.target;
+    this.setState({ topic: value });
   };
 
   handleSubmit = event => {
@@ -34,11 +34,11 @@ export class TopicAdder extends Component {
     event.preventDefault();
     if (newTopic) {
       addTopic(newTopic, newTopicDes).then(() => {
-        navigate("/add-article");
+        navigate("/add-article", { state: { topic: newTopic } });
       });
     } else {
-      this.setState({ topic });
-      navigate("/add-article");
+      console.log(topic);
+      navigate("/add-article", { state: { topic: topic } });
     }
   };
 
@@ -57,7 +57,7 @@ export class TopicAdder extends Component {
             {topics && (
               <Dropdown
                 className="dropdown"
-                options={[...topics.map(topic => topic.slug)]}
+                options={("select", [...topics.map(topic => topic.slug)])}
                 onSelect={this.handleSelect}
                 required
               />
@@ -77,7 +77,7 @@ export class TopicAdder extends Component {
               required
             />
           </div>
-          <div className="new-topic-des">
+          <div className="body-input">
             <label className="label">New topic description: </label>
             <textarea
               value={newTopicDes}

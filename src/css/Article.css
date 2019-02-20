@@ -33,15 +33,17 @@
   margin-top: 70px;
 }
 
-#article-vote {
+#vote {
   grid-area: vote;
   justify-content: center;
   align-content: center;
   padding-top: 20px;
+  font-size: 13px;
 }
 
-#article-vote-no {
-  font-size: 25px;
+#vote-no {
+  font-size: 18px;
+  text-align: center;
   margin: 5px;
   margin-top: 0px;
   color: #b6d094;
@@ -50,6 +52,8 @@
 .vote-button {
   background-color: #b6d094;
   color: #373f51;
+  align-self: center;
+  font-size: 18px;
 }
 
 .delete {
@@ -121,20 +125,6 @@
 #comment-body {
   margin: 20px;
   grid-area: body;
-}
-
-#comment-vote {
-  grid-area: vote;
-  text-align: center;
-  align-self: center;
-}
-
-#comment-vote-no {
-  font-size: 18px;
-  padding: 5px;
-  margin: 0px;
-  margin-bottom: 5px;
-  color: #b6d094;
 }
 
 @media only screen and (max-width: 768px) {

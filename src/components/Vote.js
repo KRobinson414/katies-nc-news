@@ -21,22 +21,22 @@ export class Vote extends Component {
   };
 
   render() {
-    const { votes } = this.props;
+    const { votes, username, author } = this.props;
     const { voteChange } = this.state;
 
     return (
-      <div id="comment-vote">
+      <div id="vote">
         <button
           className="vote-button"
-          disabled={voteChange > 0}
+          disabled={voteChange > 0 || username === author}
           onClick={() => this.handleVote(1)}
         >
           <FontAwesomeIcon icon={faThumbsUp} />
         </button>
-        <p id="comment-vote-no">{votes + voteChange}</p>
+        <p id="vote-no">{votes + voteChange}</p>
         <button
           className="vote-button"
-          disabled={voteChange < 0}
+          disabled={voteChange < 0 || username === author}
           onClick={() => this.handleVote(-1)}
         >
           <FontAwesomeIcon icon={faThumbsDown} />
@@ -48,7 +48,9 @@ export class Vote extends Component {
 
 Vote.propTypes = {
   article_id: PropTypes.number.isRequired,
-  votes: PropTypes.number.isRequired
+  author: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+  username: PropTypes.string.isRequired
 };
 
 export default Vote;

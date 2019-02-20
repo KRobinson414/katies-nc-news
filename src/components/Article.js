@@ -22,9 +22,11 @@ export class Article extends Component {
     user &&
       fetchArticleById(article_id)
         .then(({ article }) => {
-          user.username === article.author
-            ? this.setState({ article, showDelete: true, isLoading: false })
-            : this.setState({ article, isLoading: false });
+          if (user.username === article.author) {
+            this.setState({ article, isLoading: false, showDelete: true });
+          } else {
+            this.setState({ article, isLoading: false });
+          }
         })
         .catch(() => {
           navigate("/not-found");
@@ -73,7 +75,12 @@ export class Article extends Component {
         <div className="App-body">
           <div className="article-header">
             <div id="topic">{article.topic}</div>
-            <Vote article_id={article.article_id} votes={article.votes} />
+            <Vote
+              article_id={article.article_id}
+              author={article.author}
+              votes={article.votes}
+              username={user.username}
+            />
           </div>
           <div className="article">
             {showDelete && (
