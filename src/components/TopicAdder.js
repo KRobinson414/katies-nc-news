@@ -33,12 +33,10 @@ export class TopicAdder extends Component {
     const { topic, newTopic, newTopicDes } = this.state;
     event.preventDefault();
     if (newTopic) {
-      console.log(newTopic);
       addTopic(newTopic, newTopicDes).then(() => {
         navigate("/add-article");
       });
     } else {
-      console.log(topic);
       this.setState({ topic });
       navigate("/add-article");
     }

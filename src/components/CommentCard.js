@@ -54,7 +54,7 @@ export class CommentCard extends Component {
         <Vote
           article_id={comment.article_id}
           votes={comment.votes}
-          comment={comment}
+          comment_id={comment.comment_id}
         />
       </div>
     );

@@ -65,6 +65,7 @@ export class Article extends Component {
     } = this.state;
     const { user, setUser } = this.props;
     const date = Date(article.created_at).slice(0, 21);
+
     if (isLoading) return <h3>Loading article...</h3>;
 
     return (

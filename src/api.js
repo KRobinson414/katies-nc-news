@@ -48,3 +48,16 @@ export const addTopic = async (slug, description) => {
     }
   });
 };
+
+export const changeVote = async (article_id, voteChange, comment_id) => {
+  const url = comment_id
+    ? `${baseURL}/articles/${article_id}/comments/${comment_id}`
+    : `${baseURL}/articles/${article_id}`;
+  const body = { inc_votes: voteChange };
+
+  return await axios({
+    method: "patch",
+    url,
+    data: body
+  });
+};
