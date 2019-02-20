@@ -14,7 +14,7 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    user: null
+    user: null,
   };
 
   componentDidMount() {
@@ -31,8 +31,13 @@ class App extends Component {
   hydrateStateWithLocalStorage() {
     for (let key in this.state) {
       if (localStorage.hasOwnProperty(key)) {
-        let value = JSON.parse(localStorage.getItem(key));
-        this.setState({ [key]: value });
+        let value = localStorage.getItem(key);
+        try {
+          value = JSON.parse(value);
+          this.setState({ [key]: value });
+        } catch (err) {
+          this.setState({ user: null });
+        }
       }
     }
   }

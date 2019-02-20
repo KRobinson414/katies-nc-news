@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 import PropTypes from "prop-types";
-import "../css/NotFound.css";
+import "../css/Errors.css";
 
 const NotFound = () => {
   return (

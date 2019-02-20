@@ -6,6 +6,16 @@ export const fetchData = async url => {
   return data;
 };
 
+export const fetchQueries = async (firstQuery, secondQuery) => {
+  // const url = secondQuery
+  //   ? `${baseURL}/articles?${firstQuery}=${secondQuery}`
+  //   : `${baseURL}/topics/${firstQuery}/articles`;
+  const { data } = await axios.get(
+    `${baseURL}/articles?${firstQuery}=${secondQuery}`
+  );
+  return data;
+};
+
 export const fetchUserByUsername = async username => {
   const { data } = await axios.get(`${baseURL}/users/${username}`);
   return data;

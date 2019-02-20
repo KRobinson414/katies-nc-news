@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import PropTypes from "prop-types";
 import Login from "./Login";
 import userAvatar from "../images/man(3).png";
@@ -7,6 +7,7 @@ import userAvatar from "../images/man(3).png";
 const Sidebar = ({ user, setUser }) => {
   const handleLogout = event => {
     event.preventDefault();
+    navigate("/");
     setUser();
   };
 

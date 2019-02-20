@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { fetchData } from "../api";
+import { fetchData, fetchQueries } from "../api";
 import Dropdown from "./Dropdown";
 import ArticleCard from "./ArticleCard";
 import "../css/Home.css";
@@ -10,7 +10,6 @@ export class Home extends Component {
     topics: [],
     articles: [],
     filterBy: "all topics",
-    sortBy: "most recent",
     isLoading: true
   };
 
@@ -30,11 +29,18 @@ export class Home extends Component {
     articles.filter(article => article.slug === filterBy);
   };
 
-  // handleSort = event => {
-  //   const { value } = event.target;
-  //   const { articles, sortBy } = this.state;
-  //   this.setState({ sortBy: value });
-  // };
+  handleSort = event => {
+    const { value } = event.target;
+    const lookup = {
+      "most recent": "created_at",
+      "most popular": "votes",
+      "most comments": "comment_count"
+    };
+    const query = lookup[value];
+    fetchQueries("sort_by", query).then(({ articles }) => {
+      this.setState({ articles });
+    });
+  };
 
   render() {
     const { articles, topics, filterBy, isLoading } = this.state;
@@ -61,7 +67,7 @@ export class Home extends Component {
             Sort by:
             <Dropdown
               className="dropdown"
-              options={["created_at", "votes", "comment_count"]}
+              options={["most recent", "most popular", "most comments"]}
               onSelect={this.handleSort}
             />
           </span>
