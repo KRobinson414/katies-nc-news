@@ -138,7 +138,7 @@ export class Article extends Component {
               Sort by:
               <Dropdown
                 className="dropdown"
-                options={["most recent", "most popular"]}
+                options={["", "most recent", "most popular"]}
                 onSelect={this.handleCommentSort}
               />
             </div>
