@@ -101,14 +101,11 @@ export class Article extends Component {
       comments,
       showDelete,
       showCommentAdder,
-      // isLoading
       page,
       hasAllItems
     } = this.state;
     const { user, setUser } = this.props;
     const date = Date(article.created_at).slice(0, 21);
-
-    // if (isLoading) return <h3>Loading article...</h3>;
 
     return (
       <Auth user={user} setUser={setUser}>
@@ -152,6 +149,8 @@ export class Article extends Component {
                 />
               )}
             </div>
+
+            {/* Work in progress */}
             {/* <div className="sort">
               Sort by:
               <Dropdown
@@ -160,6 +159,7 @@ export class Article extends Component {
                 onSelect={this.handleCommentSort}
               />
             </div> */}
+
             {comments ? (
               comments.map(comment => (
                 <CommentCard
@@ -172,6 +172,8 @@ export class Article extends Component {
             ) : (
               <p>Loading comments...</p>
             )}
+
+            {/* Work in progress */}
             <Pagination
               page={page}
               hasAllItems={hasAllItems}

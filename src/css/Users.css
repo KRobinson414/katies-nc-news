@@ -5,6 +5,10 @@
   grid-template-rows: auto;
 }
 
+.header {
+  margin-bottom: 18px;
+}
+
 #user-card {
   font-size: 25px;
   margin: 10px;
@@ -15,4 +19,13 @@
   position: relative;
   max-width: 200px;
   height: 200px;
+}
+
+.user-card-text {
+  margin-bottom: 5px;
+}
+
+.user-card-subtext {
+  font-size: 15px;
+  margin: 0px;
 }

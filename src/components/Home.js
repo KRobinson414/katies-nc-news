@@ -60,6 +60,7 @@ export class Home extends Component {
     });
   };
 
+  // Work in progress
   setPage = direction => {
     const { page } = this.state;
     this.setState({ page: page + direction });

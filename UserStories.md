@@ -23,13 +23,13 @@ x As a logged in user, I should be able to delete my own comments.
 
 # If time...
 
-- As a user, I should be able to navigate over pages of articles (e.g. using pagination or infinite scroll). TO-DO TODAY!
-- As a user, I should be able to navigate over pages of comments (e.g. using pagination or infinite scroll). TO-DO TODAY!
+- As a user, I should be able to navigate over pages of articles (e.g. using pagination or infinite scroll).
+- As a user, I should be able to navigate over pages of comments (e.g. using pagination or infinite scroll).
 
 x As a user, I should be able to view a list of all articles written by a specific user.
 
 # Extra credit
 
-- Create a route which shows which users have been most active adding articles and comments. NEED TO MOVE ALL DATA IN USERPROFILE TO USERS
-- Make this route sort the users by how popular they are based on an aggregation of their article and comment vote counts. NEED TO MOVE ALL DATA IN USERPROFILE TO USERS
+- Create a route which shows which users have been most active adding articles and comments.
+- Make this route sort the users by how popular they are based on an aggregation of their article and comment vote counts.
 - Implement a filter which re-orders comments based on either the time they were added, or how many votes they have got. NOT LOADING - COMPONENTDIDUPDATE ISSUE???
