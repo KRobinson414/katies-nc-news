@@ -28,7 +28,7 @@ export class Vote extends Component {
       <div id="vote">
         <button
           className="vote-button"
-          disabled={voteChange > 0 || username === author}
+          disabled={voteChange !== 0 || username === author}
           onClick={() => this.handleVote(1)}
         >
           <FontAwesomeIcon icon={faThumbsUp} />
@@ -36,7 +36,7 @@ export class Vote extends Component {
         <p id="vote-no">{votes + voteChange}</p>
         <button
           className="vote-button"
-          disabled={voteChange < 0 || username === author}
+          disabled={voteChange !== 0 || username === author}
           onClick={() => this.handleVote(-1)}
         >
           <FontAwesomeIcon icon={faThumbsDown} />

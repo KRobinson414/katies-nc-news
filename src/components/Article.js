@@ -6,7 +6,7 @@ import Auth from "./Auth";
 import Vote from "./Vote";
 import CommentAdder from "./CommentAdder";
 import CommentCard from "./CommentCard";
-import Dropdown from "./Dropdown";
+// import Dropdown from "./Dropdown";
 import "../css/Article.css";
 
 export class Article extends Component {
@@ -134,14 +134,14 @@ export class Article extends Component {
                 />
               )}
             </div>
-            <div className="sort">
+            {/* <div className="sort">
               Sort by:
               <Dropdown
                 className="dropdown"
                 options={["", "most recent", "most popular"]}
                 onSelect={this.handleCommentSort}
               />
-            </div>
+            </div> */}
             {comments ? (
               comments.map(comment => (
                 <CommentCard

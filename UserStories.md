@@ -26,7 +26,7 @@ x As a logged in user, I should be able to delete my own comments.
 - As a user, I should be able to navigate over pages of articles (e.g. using pagination or infinite scroll). TO-DO TODAY!
 - As a user, I should be able to navigate over pages of comments (e.g. using pagination or infinite scroll). TO-DO TODAY!
 
-x As a user, I should be able to view a list of all articles written by a specific user. EXPAND TO INCLUDE COMMENTS BY USER?? CREATE NEW ENDPOINT
+x As a user, I should be able to view a list of all articles written by a specific user.
 
 # Extra credit
 

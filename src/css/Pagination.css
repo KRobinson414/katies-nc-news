@@ -1,0 +1,7 @@
+.pagination {
+  margin: 20px;
+}
+
+button:disabled {
+  display: none;
+}

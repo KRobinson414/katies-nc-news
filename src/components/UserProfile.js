@@ -54,7 +54,7 @@ export class UserProfile extends Component {
   };
 
   render() {
-    const { articles, comments, isLoading } = this.state;
+    const { articles, isLoading } = this.state;
     const { username } = this.props;
     if (isLoading) return <h3>Loading user profile...</h3>;
 

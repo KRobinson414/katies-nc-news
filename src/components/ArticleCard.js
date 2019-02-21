@@ -63,7 +63,7 @@ ArticleCard.propTypes = {
     author: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     article_id: PropTypes.number.isRequired,
-    body: PropTypes.string.isRequired,
+    body: PropTypes.string,
     votes: PropTypes.number.isRequired,
     created_at: PropTypes.string.isRequired,
     topic: PropTypes.string.isRequired,

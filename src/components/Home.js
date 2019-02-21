@@ -1,17 +1,20 @@
 import React, { Component } from "react";
+import { navigate } from "@reach/router/lib/history";
 import PropTypes from "prop-types";
 import { fetchData, fetchQueries, fetchArticleByTopic } from "../api";
 import Dropdown from "./Dropdown";
 import ArticleCard from "./ArticleCard";
+import Pagination from "./Pagination";
 import "../css/Home.css";
-import { navigate } from "@reach/router/lib/history";
 
 export class Home extends Component {
   state = {
     topics: [],
     articles: [],
     filterBy: "all topics",
-    isLoading: true
+    isLoading: true,
+    page: 1,
+    hasAllItems: false
   };
 
   componentDidMount() {
@@ -34,9 +37,13 @@ export class Home extends Component {
           navigate("/not-found");
         });
     } else {
-      fetchData("articles").then(({ articles }) => {
-        this.setState({ articles, isLoading: false });
-      });
+      fetchData("articles")
+        .then(({ articles }) => {
+          this.setState({ articles, isLoading: false });
+        })
+        .catch(() => {
+          navigate("/not-found");
+        });
     }
   };
 
@@ -53,8 +60,14 @@ export class Home extends Component {
     });
   };
 
+  setPage = direction => {
+    const { page } = this.state;
+    this.setState({ page: page + direction });
+    console.log(page);
+  };
+
   render() {
-    const { articles, topics, isLoading } = this.state;
+    const { articles, topics, isLoading, page, hasAllItems } = this.state;
     if (isLoading) return <h3>Loading articles...</h3>;
 
     return (
@@ -82,6 +95,11 @@ export class Home extends Component {
           articles.map(article => (
             <ArticleCard key={article.article_id} article={article} />
           ))}
+        <Pagination
+          page={page}
+          hasAllItems={hasAllItems}
+          setPage={this.setPage}
+        />
       </div>
     );
   }
