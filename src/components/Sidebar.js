@@ -24,9 +24,14 @@ const Sidebar = ({ user, setUser }) => {
           />
           <p id="welcome">Welcome back {user.username}!</p>
           <p>
-            <button id="postArticle">
-              <Link to="/add-topic">Post a new article</Link>
-            </button>
+            <Link to={`/${user.username}`}>
+              <button id="profileLink">Your profile</button>
+            </Link>
+          </p>
+          <p>
+            <Link to="/add-topic">
+              <button id="postArticle">Post an article</button>
+            </Link>
           </p>
           <p>
             <button id="logout" onClick={handleLogout}>

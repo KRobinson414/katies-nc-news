@@ -11,10 +11,11 @@ import BadRequest from "./components/BadRequest";
 import Sidebar from "./components/Sidebar";
 
 import "./App.css";
+import UserProfile from "./components/UserProfile";
 
 class App extends Component {
   state = {
-    user: null,
+    user: null
   };
 
   componentDidMount() {
@@ -57,6 +58,7 @@ class App extends Component {
               setUser={this.setUser}
             />
             <Users path="/users" user={user} setUser={this.setUser} />
+            <UserProfile path="/:username" user={user} />
             <TopicAdder path="/add-topic" user={user} />
             <ArticleAdder path="/add-article" user={user} />
             <NotFound path="/not-found" />

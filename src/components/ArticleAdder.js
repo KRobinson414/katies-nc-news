@@ -24,8 +24,7 @@ export class ArticleAdder extends Component {
         const { article_id } = data.article;
         navigate(`articles/${article_id}`);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         navigate("bad-request");
       });
   };

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 import PropTypes from "prop-types";
 import { fetchData } from "../api";
 import "../css/Users.css";
@@ -25,12 +26,14 @@ export class Users extends Component {
         <div className="users">
           {users &&
             users.map(user => (
-              <div key={user.username} id="user-card">
-                <p>
-                  <img alt="User Avatar" src={user.avatar_url} />
-                </p>
-                <p>{user.username}</p>
-              </div>
+              <Link to={`/${user.username}`} key={user.username}>
+                <div id="user-card">
+                  <p>
+                    <img alt="User Avatar" src={user.avatar_url} />
+                  </p>
+                  <p>{user.username}</p>
+                </div>
+              </Link>
             ))}
         </div>
       </div>

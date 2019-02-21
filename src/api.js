@@ -7,9 +7,6 @@ export const fetchData = async url => {
 };
 
 export const fetchQueries = async (firstQuery, secondQuery) => {
-  // const url = secondQuery
-  //   ? `${baseURL}/articles?${firstQuery}=${secondQuery}`
-  //   : `${baseURL}/topics/${firstQuery}/articles`;
   const { data } = await axios.get(
     `${baseURL}/articles?${firstQuery}=${secondQuery}`
   );
