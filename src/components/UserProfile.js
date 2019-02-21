@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { fetchData } from "../api";
 import ArticleCard from "./ArticleCard";
+import Pagination from "./Pagination";
 import "../css/UserProfile.css";
 
 export class UserProfile extends Component {
   state = {
     articles: [],
     isLoading: true,
-    isOwnProfile: false
+    isOwnProfile: false,
+    page: 1,
+    hasAllItems: false
   };
 
   componentDidMount() {
@@ -53,8 +56,13 @@ export class UserProfile extends Component {
     }, 0);
   };
 
+  setPage = direction => {
+    const { page } = this.state;
+    this.setState({ page: page + direction });
+  };
+
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, page, hasAllItems } = this.state;
     const { username } = this.props;
     if (isLoading) return <h3>Loading user profile...</h3>;
 
@@ -71,6 +79,11 @@ export class UserProfile extends Component {
             articles.map(article => (
               <ArticleCard key={article.article_id} article={article} />
             ))}
+          <Pagination
+            page={page}
+            hasAllItems={hasAllItems}
+            setPage={this.setPage}
+          />
         </div>
       </div>
     );

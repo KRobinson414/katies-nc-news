@@ -7,6 +7,7 @@ import Vote from "./Vote";
 import CommentAdder from "./CommentAdder";
 import CommentCard from "./CommentCard";
 // import Dropdown from "./Dropdown";
+import Pagination from "./Pagination";
 import "../css/Article.css";
 
 export class Article extends Component {
@@ -14,8 +15,10 @@ export class Article extends Component {
     article: {},
     comments: [],
     showCommentAdder: false,
-    showDelete: false
+    showDelete: false,
     // isLoading: true
+    page: 1,
+    hasAllItems: false
   };
 
   fetchPageData = () => {
@@ -79,13 +82,20 @@ export class Article extends Component {
     });
   };
 
+  setPage = direction => {
+    const { page } = this.state;
+    this.setState({ page: page + direction });
+  };
+
   render() {
     const {
       article,
       comments,
       showDelete,
-      showCommentAdder
+      showCommentAdder,
       // isLoading
+      page,
+      hasAllItems
     } = this.state;
     const { user, setUser } = this.props;
     const date = Date(article.created_at).slice(0, 21);
@@ -154,6 +164,11 @@ export class Article extends Component {
             ) : (
               <p>Loading comments...</p>
             )}
+            <Pagination
+              page={page}
+              hasAllItems={hasAllItems}
+              setPage={this.setPage}
+            />
           </div>
         )}
       </Auth>

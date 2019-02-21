@@ -56,8 +56,8 @@
   font-size: 18px;
 }
 
-.vote-button:disabled {
-  background-color: grey;
+#vote-button:disabled {
+  color: grey;
   border-color: grey;
 }
 

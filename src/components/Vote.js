@@ -27,7 +27,7 @@ export class Vote extends Component {
     return (
       <div id="vote">
         <button
-          className="vote-button"
+          id="vote-button"
           disabled={voteChange !== 0 || username === author}
           onClick={() => this.handleVote(1)}
         >
@@ -35,7 +35,7 @@ export class Vote extends Component {
         </button>
         <p id="vote-no">{votes + voteChange}</p>
         <button
-          className="vote-button"
+          id="vote-button"
           disabled={voteChange !== 0 || username === author}
           onClick={() => this.handleVote(-1)}
         >

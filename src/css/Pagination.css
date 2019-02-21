@@ -2,6 +2,20 @@
   margin: 20px;
 }
 
-button:disabled {
+#prev-page button {
+  font-size: 30px;
+  border: none;
+}
+
+#next-page button {
+  font-size: 30px;
+  border: none;
+}
+
+#prev-page button:disabled {
+  display: none;
+}
+
+#next-page button:disabled {
   display: none;
 }

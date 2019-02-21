@@ -63,7 +63,6 @@ export class Home extends Component {
   setPage = direction => {
     const { page } = this.state;
     this.setState({ page: page + direction });
-    console.log(page);
   };
 
   render() {
