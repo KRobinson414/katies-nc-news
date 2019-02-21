@@ -18,6 +18,7 @@ export class ArticleCard extends Component {
   render() {
     const { article } = this.props;
     const { comments } = this.state;
+    console.log(article.avatar_url);
     return (
       <div id="article-card">
         <span className="article-card-text">

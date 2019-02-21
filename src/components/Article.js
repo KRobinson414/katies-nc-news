@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import PropTypes from "prop-types";
-import { fetchArticleById, fetchData, deleteItem } from "../api";
+import { fetchArticleById, fetchData, deleteItem, fetchQueries } from "../api";
 import Auth from "./Auth";
 import Vote from "./Vote";
 import CommentAdder from "./CommentAdder";
 import CommentCard from "./CommentCard";
+import Dropdown from "./Dropdown";
 import "../css/Article.css";
 
 export class Article extends Component {
@@ -17,23 +18,32 @@ export class Article extends Component {
     // isLoading: true
   };
 
-  componentDidMount() {
+  fetchPageData = () => {
     const { article_id, user } = this.props;
-    user &&
-      fetchArticleById(article_id)
-        .then(({ article }) => {
-          if (user.username === article.author) {
-            this.setState({ article, isLoading: false, showDelete: true });
-          } else {
-            this.setState({ article, isLoading: false });
-          }
-        })
-        .catch(() => {
-          navigate("/not-found");
-        });
+    fetchArticleById(article_id)
+      .then(({ article }) => {
+        if (user.username === article.author) {
+          this.setState({ article, isLoading: false, showDelete: true });
+        } else {
+          this.setState({ article, isLoading: false });
+        }
+      })
+      .catch(() => {
+        navigate("/not-found");
+      });
     fetchData(`articles/${article_id}/comments`).then(({ comments }) => {
       this.setState({ comments });
     });
+  };
+
+  componentDidMount() {
+    const { user } = this.props;
+    user && this.fetchPageData();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { user } = this.props;
+    if (prevProps.user !== user) this.fetchPageData();
   }
 
   toggleCommentInput = event => {
@@ -57,13 +67,25 @@ export class Article extends Component {
     deleteItem(article_id, null).then(() => navigate("/"));
   };
 
+  handleCommentSort = event => {
+    const { value } = event.target;
+    const lookup = {
+      "most recent": "created_at",
+      "most popular": "votes"
+    };
+    const query = lookup[value];
+    fetchQueries("sort_by", query).then(({ comments }) => {
+      this.setState({ comments });
+    });
+  };
+
   render() {
     const {
       article,
       comments,
       showDelete,
-      showCommentAdder,
-      isLoading
+      showCommentAdder
+      // isLoading
     } = this.state;
     const { user, setUser } = this.props;
     const date = Date(article.created_at).slice(0, 21);
@@ -76,12 +98,14 @@ export class Article extends Component {
           <div className="App-body">
             <div className="article-header">
               <div id="topic">{article.topic}</div>
-              <Vote
-                article_id={article.article_id}
-                author={article.author}
-                votes={article.votes}
-                username={user.username}
-              />
+              {article.article_id && (
+                <Vote
+                  article_id={article.article_id}
+                  author={article.author}
+                  votes={article.votes}
+                  username={user.username}
+                />
+              )}
             </div>
             <div className="article">
               {showDelete && (
@@ -109,6 +133,14 @@ export class Article extends Component {
                   updateComments={this.updateComments}
                 />
               )}
+            </div>
+            <div className="sort">
+              Sort by:
+              <Dropdown
+                className="dropdown"
+                options={["most recent", "most popular"]}
+                onSelect={this.handleCommentSort}
+              />
             </div>
             {comments ? (
               comments.map(comment => (

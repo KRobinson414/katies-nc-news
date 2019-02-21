@@ -6,10 +6,17 @@ export const fetchData = async url => {
   return data;
 };
 
-export const fetchQueries = async (firstQuery, secondQuery) => {
-  const { data } = await axios.get(
-    `${baseURL}/articles?${firstQuery}=${secondQuery}`
-  );
+export const fetchQueries = async (firstQuery, secondQuery, article_id) => {
+  const url = article_id
+    ? `${baseURL}/articles/${article_id}/comments?${firstQuery}=${secondQuery}`
+    : `${baseURL}/articles?${firstQuery}=${secondQuery}`;
+
+  const { data } = await axios.get(url);
+  return data;
+};
+
+export const fetchArticleByTopic = async topic => {
+  const { data } = await axios.get(`${baseURL}/topics/${topic}/articles`);
   return data;
 };
 

@@ -19,26 +19,24 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.hydrateStateWithLocalStorage();
+    this.hydrateStateWithSessionStorage();
   }
 
   setUser = user => {
     this.setState({
       user
     });
-    localStorage.setItem("user", JSON.stringify(user));
+    sessionStorage.setItem("user", JSON.stringify(user));
   };
 
-  hydrateStateWithLocalStorage() {
-    for (let key in this.state) {
-      if (localStorage.hasOwnProperty(key)) {
-        let value = localStorage.getItem(key);
-        try {
-          value = JSON.parse(value);
-          this.setState({ [key]: value });
-        } catch (err) {
-          this.setState({ user: null });
-        }
+  hydrateStateWithSessionStorage() {
+    if (sessionStorage.hasOwnProperty("user")) {
+      let value = sessionStorage.getItem("user");
+      try {
+        value = JSON.parse(value);
+        this.setState({ user: value });
+      } catch (err) {
+        this.setState({ user: null });
       }
     }
   }

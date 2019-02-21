@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { fetchData, fetchQueries } from "../api";
+import { fetchData, fetchQueries, fetchArticleByTopic } from "../api";
 import Dropdown from "./Dropdown";
 import ArticleCard from "./ArticleCard";
 import "../css/Home.css";
+import { navigate } from "@reach/router/lib/history";
 
 export class Home extends Component {
   state = {
@@ -24,9 +25,19 @@ export class Home extends Component {
 
   handleFilter = event => {
     const { value } = event.target;
-    const { articles, filterBy } = this.state;
-    this.setState({ filterBy: value });
-    articles.filter(article => article.slug === filterBy);
+    if (value !== "all topics") {
+      fetchArticleByTopic(value)
+        .then(({ articles }) => {
+          this.setState({ articles, isLoading: false });
+        })
+        .catch(() => {
+          navigate("/not-found");
+        });
+    } else {
+      fetchData("articles").then(({ articles }) => {
+        this.setState({ articles, isLoading: false });
+      });
+    }
   };
 
   handleSort = event => {
@@ -43,12 +54,7 @@ export class Home extends Component {
   };
 
   render() {
-    const { articles, topics, filterBy, isLoading } = this.state;
-    const chosenArticles = articles
-      ? filterBy === "all topics"
-        ? articles
-        : articles.filter(article => article.topic === filterBy)
-      : "";
+    const { articles, topics, isLoading } = this.state;
     if (isLoading) return <h3>Loading articles...</h3>;
 
     return (
@@ -73,7 +79,7 @@ export class Home extends Component {
           </span>
         </div>
         {articles &&
-          chosenArticles.map(article => (
+          articles.map(article => (
             <ArticleCard key={article.article_id} article={article} />
           ))}
       </div>
