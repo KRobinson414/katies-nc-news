@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { fetchArticlesByUsername } from "../api";
 import ArticleCard from "./ArticleCard";
-import Pagination from "./Pagination";
 import "../css/UserProfile.css";
 
 export class UserProfile extends Component {
@@ -77,11 +76,6 @@ export class UserProfile extends Component {
             articles.map(article => (
               <ArticleCard key={article.article_id} article={article} />
             ))}
-          <Pagination
-            page={page}
-            hasAllItems={hasAllItems}
-            setPage={this.setPage}
-          />
         </div>
       </div>
     );
