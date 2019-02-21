@@ -26,7 +26,11 @@ export class Users extends Component {
         <div className="users">
           {users &&
             users.map(user => (
-              <Link to={`/${user.username}`} key={user.username}>
+              <Link
+                to={`/${user.username}`}
+                key={user.username}
+                username={user.username}
+              >
                 <div id="user-card">
                   <p>
                     <img alt="User Avatar" src={user.avatar_url} />
