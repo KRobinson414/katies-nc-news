@@ -84,7 +84,15 @@ export class Article extends Component {
 
   setPage = direction => {
     const { page } = this.state;
+    const { article_id } = this.state.article;
     this.setState({ page: page + direction });
+    fetchQueries("p", page, article_id).then(({ comments }) => {
+      if (comments.length < 5) {
+        this.setState({ hasAllItems: true, comments });
+      } else {
+        this.setState({ comments });
+      }
+    });
   };
 
   render() {

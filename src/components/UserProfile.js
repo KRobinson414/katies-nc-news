@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { fetchData } from "../api";
+import { fetchArticlesByUsername } from "../api";
 import ArticleCard from "./ArticleCard";
 import Pagination from "./Pagination";
 import "../css/UserProfile.css";
@@ -9,36 +9,28 @@ export class UserProfile extends Component {
   state = {
     articles: [],
     isLoading: true,
-    isOwnProfile: false,
-    page: 1,
-    hasAllItems: false
+    isOwnProfile: false
   };
 
-  componentDidMount() {
-    const { user, username } = this.props;
-    fetchData("articles").then(({ articles }) => {
-      const userArticles = articles.filter(
-        article => article.author === username
-      );
-      this.setState({ articles: userArticles, isLoading: false });
+  fetchPageData = username => {
+    const { user } = this.props;
+    fetchArticlesByUsername(username).then(({ articles }) => {
+      this.setState({ articles, isLoading: false });
     });
     if (user && user.username === username) {
       this.setState({ isOwnProfile: true });
     }
+  };
+
+  componentDidMount() {
+    const { username } = this.props;
+    this.fetchPageData(username);
   }
 
   componentDidUpdate(prevProps) {
-    const { user, username } = this.props;
+    const { username } = this.props;
     if (prevProps.username !== username) {
-      fetchData("articles").then(({ articles }) => {
-        const userArticles = articles.filter(
-          article => article.author === username
-        );
-        this.setState({ articles: userArticles, isLoading: false });
-      });
-      if (user && user.username === username) {
-        this.setState({ isOwnProfile: true });
-      }
+      this.fetchPageData(username);
     }
   }
 
@@ -57,8 +49,10 @@ export class UserProfile extends Component {
   };
 
   setPage = direction => {
+    const { username } = this.props;
     const { page } = this.state;
     this.setState({ page: page + direction });
+    this.fetchPageData(username);
   };
 
   render() {
@@ -70,9 +64,13 @@ export class UserProfile extends Component {
       <div className="App-body">
         <h1 className="header">{username}</h1>
         <div>
-          <span>total articles: {articles.length}</span>
-          <span>total article votes: {this.totalArticleVotes()}</span>
-          <span>total articles comments: {this.totalArticleComments()}</span>
+          <span>total articles: {articles && articles.length}</span>
+          <span>
+            total article votes: {articles && this.totalArticleVotes()}
+          </span>
+          <span>
+            total articles comments: {articles && this.totalArticleComments()}
+          </span>
         </div>
         <div>
           {articles &&

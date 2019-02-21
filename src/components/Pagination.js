@@ -12,7 +12,7 @@ const Pagination = ({ page, hasAllItems, setPage }) => {
   return (
     <div className="pagination">
       <span id="prev-page">
-        <button onClick={() => setPage(-1)} disabled={page < 2}>
+        <button onClick={() => setPage(-1)} disabled={page === 1}>
           <FontAwesomeIcon icon={faArrowCircleLeft} />
         </button>
       </span>

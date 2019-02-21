@@ -25,6 +25,11 @@ export const fetchUserByUsername = async username => {
   return data;
 };
 
+export const fetchArticlesByUsername = async username => {
+  const { data } = await axios.get(`${baseURL}/articles/users/${username}`);
+  return data;
+};
+
 export const fetchArticleById = async id => {
   const { data } = await axios.get(`${baseURL}/articles/${id}`);
   return data;

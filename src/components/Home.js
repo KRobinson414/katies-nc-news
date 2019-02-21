@@ -63,6 +63,15 @@ export class Home extends Component {
   setPage = direction => {
     const { page } = this.state;
     this.setState({ page: page + direction });
+    console.log(page);
+    fetchQueries("p", page).then(({ articles }) => {
+      console.log(articles);
+      if (articles.length < 5) {
+        this.setState({ hasAllItems: true, articles });
+      } else {
+        this.setState({ articles });
+      }
+    });
   };
 
   render() {
@@ -90,6 +99,11 @@ export class Home extends Component {
             />
           </span>
         </div>
+        <Pagination
+          page={page}
+          hasAllItems={hasAllItems}
+          setPage={this.setPage}
+        />
         {articles &&
           articles.map(article => (
             <ArticleCard key={article.article_id} article={article} />
