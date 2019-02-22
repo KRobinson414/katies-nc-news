@@ -21,12 +21,12 @@ export const fetchArticlesByTopic = async (topic, firstQuery, secondQuery) => {
     : `${baseURL}/topics/${topic}/articles`;
 
   const { data } = await axios.get(url);
-  return data;
+  return data.articles;
 };
 
 export const fetchUserByUsername = async username => {
   const { data } = await axios.get(`${baseURL}/users/${username}`);
-  return data;
+  return data.user;
 };
 
 export const fetchArticlesByUsername = async (username, query) => {
@@ -35,12 +35,12 @@ export const fetchArticlesByUsername = async (username, query) => {
     : `${baseURL}/articles/users/${username}`;
 
   const { data } = await axios.get(url);
-  return data;
+  return data.articles;
 };
 
 export const fetchArticleById = async id => {
   const { data } = await axios.get(`${baseURL}/articles/${id}`);
-  return data;
+  return data.article;
 };
 
 export const changeVote = async (article_id, voteChange, comment_id) => {

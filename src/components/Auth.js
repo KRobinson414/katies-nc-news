@@ -21,7 +21,7 @@ export class Auth extends Component {
     const { setUser } = this.props;
     const { userText } = this.state;
     fetchUserByUsername(userText)
-      .then(({ user }) => {
+      .then(user => {
         setUser(user);
         navigate("/");
       })

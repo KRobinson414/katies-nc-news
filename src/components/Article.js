@@ -24,7 +24,7 @@ export class Article extends Component {
   fetchPageData = () => {
     const { article_id, user } = this.props;
     fetchArticleById(article_id)
-      .then(({ article }) => {
+      .then(article => {
         if (user.username === article.author) {
           this.setState({ article, isLoading: false, showDelete: true });
         } else {

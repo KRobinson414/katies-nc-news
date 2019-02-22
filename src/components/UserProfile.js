@@ -15,7 +15,7 @@ export class UserProfile extends Component {
 
   fetchArticleData = (username, query) => {
     const { user } = this.props;
-    fetchArticlesByUsername(username, query).then(({ articles }) => {
+    fetchArticlesByUsername(username, query).then(articles => {
       this.setState({ articles, isLoading: false });
     });
     if (user && user.username === username) {
