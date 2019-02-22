@@ -28,7 +28,7 @@ export class Home extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { articles, filterBy, sortBy, page } = this.state;
+    const { filterBy, sortBy, page } = this.state;
 
     if (
       prevState.page !== page ||
@@ -36,19 +36,25 @@ export class Home extends Component {
       prevState.filterBy !== filterBy
     ) {
       if (filterBy === "all topics") {
-        console.log("here");
         fetchQueries("p", page, "sort_by", sortBy)
           .then(({ articles }) => {
-            this.setState({ articles });
+            if (articles < 5) {
+              this.setState({ articles, hasAllItems: true });
+            } else {
+              this.setState({ articles, hasAllItems: false });
+            }
           })
           .catch(() => {
             navigate("/not-found");
           });
       } else {
-        console.log(page);
         fetchArticlesByTopic(filterBy, "p", page, "sort_by", sortBy)
           .then(articles => {
-            this.setState({ articles });
+            if (articles < 5) {
+              this.setState({ articles, hasAllItems: true });
+            } else {
+              this.setState({ articles, hasAllItems: false });
+            }
           })
           .catch(() => {
             navigate("/not-found");

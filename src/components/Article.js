@@ -58,6 +58,7 @@ export class Article extends Component {
   updateComments = () => {
     const { article_id } = this.state.article;
     const { page, sortBy } = this.state;
+    console.log(page, sortBy);
     fetchQueries("p", page, "sort_by", sortBy, article_id).then(
       ({ comments }) => {
         this.setState({ comments, showCommentAdder: false });
@@ -171,8 +172,6 @@ export class Article extends Component {
             ) : (
               <p>Loading comments...</p>
             )}
-
-            {/* Work in progress */}
             <Pagination
               page={page}
               hasAllItems={hasAllItems}

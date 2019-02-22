@@ -53,7 +53,7 @@
 - [x] Uses object destructuring where possible
 - [x] prop-types
 - [x] No `console.log`s / comments **do a quick search in vscode to get rid**
-- [ ] Pagination & filtering by topic & sorting **we have just discussed briefly**
+- [x] Pagination & filtering by topic & sorting **we have just discussed briefly**
 
 ## MAKE SURE ALL TESTS ARE STILL PASSING IN BACK END
 
