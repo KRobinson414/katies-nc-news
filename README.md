@@ -1,68 +1,95 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Katie's NC News
 
-## Available Scripts
+NC News is a webapp that serves user submitted articles on a range of topics. This app makes API calls to the back-end NC News. Logged in users can do the following within the app:
 
-In the project directory, you can run:
+- Read articles on different topics
+- Create new articles and topics
+- Post comments on articles
+- Vote on both articles and topics
 
-### `npm start`
+### Front-end App
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Github repo: https://github.com/Rusty414/katies-nc-news
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Deployed project: https://katies-nc-news.netlify.com/
 
-### `npm test`
+### Back-end API
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Github repo: (need to duplicate)
 
-### `npm run build`
+Deployed project: https://katies-nc-news.herokuapp.com/api
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting started
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+To run this app locally, please do the following:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. Fork & Clone the repo
 
-### `npm run eject`
+### 2. Install dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Once you have forked and cloned the repo, navigate to the root folder of the project in the command line and run the following command:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    npm init
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This will install the following dependencies listed in the package.json:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.15",
+        "@fortawesome/free-solid-svg-icons": "^5.7.2",
+        "@fortawesome/react-fontawesome": "^0.1.4",
+        "@reach/router": "^1.2.1",
+        "axios": "^0.18.0",
+        "fontawesome": "^5.6.3",
+        "moment": "^2.24.0",
+        "prop-types": "^15.7.2",
+        "react": "^16.8.2",
+        "react-dom": "^16.8.2",
+        "react-fontawesome": "^1.6.1",
+        "react-scripts": "2.1.5"
+      }
 
-## Learn More
+These are the minimum versions required.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 3. Start the app
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Once all the dependencies have been installed, start the app with the following command:
 
-### Code Splitting
+    npm start
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+This should automatically open a window in your browser. If it does not, navigate to localhost:3000 in the browser.
 
-### Analyzing the Bundle Size
+### 4. Log in
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+The app will require you to log in with a username in order to begin reading articles and comments. Below is a list of valid usernames:
 
-### Making a Progressive Web App
+- **tickle122**
+- **grumpy19**
+- **happyamy2016**
+- **cooljmessy**
+- **weegembump**
+- **jessjelly**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Deployment
 
-### Advanced Configuration
+This version of the site is hosted live on Netlify. To host your own version on netlify, you can follow these steps:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+1. Install the Netlify CLI by running `sudo npm i -g netlify`
+2. Make sure you're in the local project folder
+3. Run `netlify login` in your terminal to sign in to your Netlify account or create a new account at https://app.netlify.com/signup.
+4. Run `netlify deploy` and follow the instructions in the CLI to host the site.
 
-### Deployment
+## Built with
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- [Create React App](https://github.com/facebook/create-react-app) - used to bootstrap the app and streamline the creation process.
+- [Axios](https://www.npmjs.com/package/axios) - used to send requests to the backend API
+- [Reach/Router](https://github.com/reach/router) - used for routing the site
+- [PropTypes](https://www.npmjs.com/package/prop-types) - used for type checking
+- [GitHub](https://github.com/) - used for version control
 
-### `npm run build` fails to minify
+## Author
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Katie Robinson - [Rusty414](https://github.com/Rusty414)
+
+## Acknowledgements
+
+Thanks to all the tutors at Northcoders
