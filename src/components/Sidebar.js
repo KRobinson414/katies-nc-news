@@ -24,7 +24,7 @@ const Sidebar = ({ user, setUser }) => {
           />
           <p id="welcome">Welcome back {user.username}!</p>
           <p>
-            <Link to={`/${user.username}`}>
+            <Link to={`/users/${user.username}`}>
               <button id="profileLink">Your profile</button>
             </Link>
           </p>
