@@ -30,7 +30,9 @@ export class ArticleCard extends Component {
             <p>{article.topic}</p>
           </div>
           <div className="sub-subtext">
-            <p>{Date(article.created_at).slice(0, 21)}</p>
+            <p>
+              {moment(article.created_at).format("dddd Do MMMM YYYY, h:mm a")}
+            </p>
             <p>
               <span>votes: {article.votes}</span>
               <span>

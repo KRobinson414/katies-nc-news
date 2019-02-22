@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
+import moment from "moment";
 import PropTypes from "prop-types";
 import { fetchArticleById, fetchData, deleteItem, fetchQueries } from "../api";
 import Auth from "./Auth";
@@ -16,7 +17,6 @@ export class Article extends Component {
     comments: [],
     showCommentAdder: false,
     showDelete: false,
-    // isLoading: true
     page: 1,
     hasAllItems: false
   };
@@ -105,7 +105,6 @@ export class Article extends Component {
       hasAllItems
     } = this.state;
     const { user, setUser } = this.props;
-    const date = Date(article.created_at).slice(0, 21);
 
     return (
       <Auth user={user} setUser={setUser}>
@@ -132,7 +131,9 @@ export class Article extends Component {
               )}
               <h1>{article.title}</h1>
               <div className="author">written by {article.author}</div>
-              <div className="date">{date}</div>
+              <div className="date">
+                {moment(article.created_at).format("dddd Do MMMM YYYY, h:mm a")}
+              </div>
               {article.body}
             </div>
             <p>

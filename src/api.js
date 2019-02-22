@@ -20,7 +20,8 @@ export const fetchArticleByTopic = async (topic, firstQuery, secondQuery) => {
     ? `${baseURL}/topics/${topic}/articles?${firstQuery}=${secondQuery}`
     : `${baseURL}/topics/${topic}/articles`;
 
-  return axios.get(url);
+  const { data } = await axios.get(url);
+  return data;
 };
 
 export const fetchUserByUsername = async username => {
