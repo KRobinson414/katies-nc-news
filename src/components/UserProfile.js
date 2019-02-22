@@ -2,18 +2,20 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { fetchArticlesByUsername } from "../api";
 import ArticleCard from "./ArticleCard";
+import Dropdown from "./Dropdown";
 import "../css/UserProfile.css";
 
 export class UserProfile extends Component {
   state = {
     articles: [],
     isLoading: true,
-    isOwnProfile: false
+    isOwnProfile: false,
+    sortBy: "created_at"
   };
 
-  fetchPageData = username => {
+  fetchArticleData = (username, query) => {
     const { user } = this.props;
-    fetchArticlesByUsername(username).then(({ articles }) => {
+    fetchArticlesByUsername(username, query).then(({ articles }) => {
       this.setState({ articles, isLoading: false });
     });
     if (user && user.username === username) {
@@ -23,13 +25,17 @@ export class UserProfile extends Component {
 
   componentDidMount() {
     const { username } = this.props;
-    this.fetchPageData(username);
+    this.fetchArticleData(username);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { username } = this.props;
+    const { sortBy } = this.state;
     if (prevProps.username !== username) {
-      this.fetchPageData(username);
+      this.fetchArticleData(username);
+    }
+    if (prevState.sortBy !== sortBy) {
+      this.fetchArticleData(username, sortBy);
     }
   }
 
@@ -47,11 +53,15 @@ export class UserProfile extends Component {
     }, 0);
   };
 
-  setPage = direction => {
-    const { username } = this.props;
-    const { page } = this.state;
-    this.setState({ page: page + direction });
-    this.fetchPageData(username);
+  handleSort = event => {
+    const { value } = event.target;
+    const lookup = {
+      "most recent": "created_at",
+      "most popular": "votes",
+      "most comments": "comment_count"
+    };
+    const query = lookup[value];
+    this.setState({ sortBy: query });
   };
 
   render() {
@@ -62,7 +72,7 @@ export class UserProfile extends Component {
     return (
       <div className="App-body">
         <h1 className="header">{username}</h1>
-        <div>
+        <div className="userStats">
           <span>total articles: {articles && articles.length}</span>
           <span>
             total article votes: {articles && this.totalArticleVotes()}
@@ -70,6 +80,14 @@ export class UserProfile extends Component {
           <span>
             total articles comments: {articles && this.totalArticleComments()}
           </span>
+        </div>
+        <div>
+          Sort by:
+          <Dropdown
+            className="dropdown"
+            options={["most recent", "most popular", "most comments"]}
+            onSelect={this.handleSort}
+          />
         </div>
         <div>
           {articles &&

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router/lib/history";
 import PropTypes from "prop-types";
-import { fetchData, fetchQueries, fetchArticleByTopic } from "../api";
+import { fetchData, fetchQueries, fetchArticlesByTopic } from "../api";
 import Dropdown from "./Dropdown";
 import ArticleCard from "./ArticleCard";
 import Pagination from "./Pagination";
@@ -31,8 +31,8 @@ export class Home extends Component {
     const { filterBy, sortBy, page } = this.state;
     if (prevState.filterBy !== filterBy) {
       if (filterBy !== "all topics") {
-        fetchArticleByTopic(filterBy)
-          .then(({ articles }) => {
+        fetchArticlesByTopic(filterBy)
+          .then(articles => {
             this.setState({ articles, isLoading: false });
           })
           .catch(() => {
@@ -81,7 +81,6 @@ export class Home extends Component {
   };
 
   setPage = direction => {
-    const { page } = this.state;
     this.setState(prevState => {
       return {
         page: prevState.page + direction

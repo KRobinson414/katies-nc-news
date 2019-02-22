@@ -3,3 +3,7 @@ span {
   font-size: 20px;
   overflow-wrap: break-word;
 }
+
+.userStats {
+  margin-bottom: 15px;
+}

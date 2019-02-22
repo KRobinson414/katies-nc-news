@@ -16,8 +16,7 @@
 - [x] Items aligned
 - [x] Content legible (not too wide, obstructed, etc)
 - [x] Refreshing doesn’t cause an issue on sub-pages
-- [ ] No errors in the console
-      **./src/components/Users.js Line 30:  'query' is assigned a value but never used  no-unused-vars**
+- [x] No errors in the console
 - [x] Login / Votes / Posts / Deletions happen instantly _OR_ give user indication of loading
 
 ## Functionality
@@ -38,31 +37,22 @@
 - [x] Can post an article
 - [x] User page
 - [x] Users page
-      * **What is the sort by for?**
-      * **Can't see any stats, just the headings**
-
-      - **Sorting and filtering not working together yet**
-
 
 ## Error Handling
 
 - [x] Error pages
-- [x] All errors handled **nearly! :)**
-  - Navigation: (Bad url / Bad topic slug in url / Bad article id in url / Bad username in url)
-      * **If i go to `/banana` i go to a strange page for a user that doesn't exist, may also be better to have `/users/:username` rather than just `/:username`**
-  - Post article: (No text in article body / No title / No topic selected / Can you post without logging in?)
-      * **If i dont choose a topic i can still submit and it adds an article with no topic, maybe defaulting the topic to coding would be a quick fix?**
+- [x] All errors handled
 
 ## Code
+
 - [x] Well named components
 - [x] Functional components used where possible
 - [x] `node_modules` git ignored
 - [x] Components reused where possible (`Articles` / `Voter`...)
 - [x] Functions are DRY (`handleChange` for controlled components / api calls)
 - [x] Uses object destructuring where possible
-- [x] prop-types **YAYYYYYY!!!!**
+- [x] prop-types
 - [ ] No `console.log`s / comments **do a quick search in vscode to get rid**
-
 - [ ] Pagination & filtering by topic & sorting **we have just discussed briefly**
 
 ## MAKE SURE ALL TESTS ARE STILL PASSING IN BACK END
