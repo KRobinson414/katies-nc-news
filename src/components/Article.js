@@ -17,6 +17,7 @@ export class Article extends Component {
     comments: [],
     showCommentAdder: false,
     showDelete: false,
+    sortBy: "created_at",
     page: 1,
     hasAllItems: false
   };
@@ -35,11 +36,9 @@ export class Article extends Component {
       .catch(() => {
         navigate("/not-found");
       });
-    fetchQueries("p", page, "sort_by", sortBy, article_id).then(
-      ({ comments }) => {
-        this.setState({ comments });
-      }
-    );
+    fetchQueries(page, sortBy, article_id).then(({ comments }) => {
+      this.setState({ comments });
+    });
   };
 
   componentDidMount() {
@@ -59,11 +58,9 @@ export class Article extends Component {
     const { article_id } = this.state.article;
     const { page, sortBy } = this.state;
     console.log(page, sortBy);
-    fetchQueries("p", page, "sort_by", sortBy, article_id).then(
-      ({ comments }) => {
-        this.setState({ comments, showCommentAdder: false });
-      }
-    );
+    fetchQueries(page, sortBy, article_id).then(({ comments }) => {
+      this.setState({ comments, showCommentAdder: false });
+    });
   };
 
   toggleCommentInput = event => {

@@ -36,7 +36,7 @@ export class Home extends Component {
       prevState.filterBy !== filterBy
     ) {
       if (filterBy === "all topics") {
-        fetchQueries("p", page, "sort_by", sortBy)
+        fetchQueries(page, sortBy)
           .then(({ articles }) => {
             if (articles < 5) {
               this.setState({ articles, hasAllItems: true });

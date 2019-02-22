@@ -6,16 +6,10 @@ export const fetchData = async url => {
   return data;
 };
 
-export const fetchQueries = async (
-  firstQuery,
-  secondQuery,
-  thirdQuery,
-  fourthQuery,
-  article_id
-) => {
+export const fetchQueries = async (page, sortBy, article_id) => {
   const url = article_id
-    ? `${baseURL}/articles/${article_id}/comments?${firstQuery}=${secondQuery}?${thirdQuery}=${fourthQuery}`
-    : `${baseURL}/articles?${firstQuery}=${secondQuery}&${thirdQuery}=${fourthQuery}`;
+    ? `${baseURL}/articles/${article_id}/comments?p=${page}&sort_by=${sortBy}`
+    : `${baseURL}/articles?p=${page}&sort_by=${sortBy}`;
 
   const { data } = await axios.get(url);
   console.log(data);
