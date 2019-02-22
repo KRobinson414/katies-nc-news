@@ -82,7 +82,11 @@ export class Home extends Component {
 
   setPage = direction => {
     const { page } = this.state;
-    this.setState({ page: page + direction });
+    this.setState(prevState => {
+      return {
+        page: prevState.page + direction
+      };
+    });
   };
 
   render() {

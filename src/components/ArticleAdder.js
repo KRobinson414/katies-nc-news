@@ -35,7 +35,7 @@ export class ArticleAdder extends Component {
 
     return (
       <div className="adder">
-        <p>Topic: {topic}</p>
+        <p>Topic: {topic ? topic : "coding"}</p>
         <form onSubmit={this.handleSubmit}>
           <div className="text-input">
             <label className="label">Title: </label>

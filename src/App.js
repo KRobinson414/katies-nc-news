@@ -56,10 +56,10 @@ class App extends Component {
               setUser={this.setUser}
             />
             <Users path="/users" user={user} setUser={this.setUser} />
-            <UserProfile path="/:username" user={user} />
+            <UserProfile path="/users/:username" user={user} />
             <TopicAdder path="/add-topic" user={user} />
             <ArticleAdder path="/add-article" user={user} />
-            <NotFound path="/not-found" />
+            <NotFound path="/not-found" default />
             <BadRequest path="/bad-request" />
           </Router>
           <div className="App-sidebar">

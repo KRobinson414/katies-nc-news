@@ -19,6 +19,9 @@ const Menu = ({ user, setUser }) => {
       </div>
       {user ? (
         <>
+          <div>
+            <Link to="/add-topic">Post an article</Link>
+          </div>
           <div className="menu-link">Logged in as {user.username}</div>
           <div className="menu-link">
             <button id="logout" onClick={handleLogout}>

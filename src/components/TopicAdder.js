@@ -56,7 +56,7 @@ export class TopicAdder extends Component {
             {topics && (
               <Dropdown
                 className="dropdown"
-                options={[" ", ...topics.map(topic => topic.slug)]}
+                options={["", ...topics.map(topic => topic.slug)]}
                 onSelect={this.handleSelect}
                 required
               />
