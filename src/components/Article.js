@@ -58,7 +58,15 @@ export class Article extends Component {
     const { article_id } = this.state.article;
     const { page, sortBy } = this.state;
     fetchQueries(page, sortBy, article_id).then(({ comments }) => {
-      this.setState({ comments, showCommentAdder: false });
+      if (comments < 5) {
+        this.setState({ comments, showCommentAdder: false, hasAllItems: true });
+      } else {
+        this.setState({
+          comments,
+          showCommentAdder: false,
+          hasAllItems: false
+        });
+      }
     });
   };
 
