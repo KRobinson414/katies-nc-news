@@ -28,39 +28,32 @@ export class Home extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { filterBy, sortBy, page } = this.state;
-    if (prevState.filterBy !== filterBy) {
-      if (filterBy !== "all topics") {
-        fetchArticlesByTopic(filterBy)
-          .then(articles => {
-            this.setState({ articles, isLoading: false });
+    const { articles, filterBy, sortBy, page } = this.state;
+
+    if (
+      prevState.page !== page ||
+      prevState.sortBy !== sortBy ||
+      prevState.filterBy !== filterBy
+    ) {
+      if (filterBy === "all topics") {
+        console.log("here");
+        fetchQueries("p", page, "sort_by", sortBy)
+          .then(({ articles }) => {
+            this.setState({ articles });
           })
           .catch(() => {
             navigate("/not-found");
           });
       } else {
-        fetchData("articles")
-          .then(({ articles }) => {
-            this.setState({ articles, isLoading: false });
+        console.log(page);
+        fetchArticlesByTopic(filterBy, "p", page, "sort_by", sortBy)
+          .then(articles => {
+            this.setState({ articles });
           })
           .catch(() => {
             navigate("/not-found");
           });
       }
-    }
-    if (prevState.sortBy !== sortBy) {
-      fetchQueries("sort_by", sortBy).then(({ articles }) => {
-        this.setState({ articles });
-      });
-    }
-    if (prevState.page !== page) {
-      fetchQueries("p", page).then(({ articles }) => {
-        if (articles.length < 5) {
-          this.setState({ hasAllItems: true, articles });
-        } else {
-          this.setState({ hasAllItems: false, articles });
-        }
-      });
     }
   }
 

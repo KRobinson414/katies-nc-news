@@ -6,8 +6,8 @@
 - [ ] clear instructions on how to run locally
 - [ ] link to API & back end repo
 - [ ] specifies minimum versions
-- [ ] `package.json` includes dependencies
-- [ ] deployed
+- [x] `package.json` includes dependencies
+- [x] deployed
 
 ## UX
 
@@ -52,7 +52,7 @@
 - [x] Functions are DRY (`handleChange` for controlled components / api calls)
 - [x] Uses object destructuring where possible
 - [x] prop-types
-- [ ] No `console.log`s / comments **do a quick search in vscode to get rid**
+- [x] No `console.log`s / comments **do a quick search in vscode to get rid**
 - [ ] Pagination & filtering by topic & sorting **we have just discussed briefly**
 
 ## MAKE SURE ALL TESTS ARE STILL PASSING IN BACK END

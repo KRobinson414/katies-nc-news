@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import moment from "moment";
 import PropTypes from "prop-types";
-import { fetchArticleById, fetchData, deleteItem, fetchQueries } from "../api";
+import { fetchArticleById, deleteItem, fetchQueries } from "../api";
 import Auth from "./Auth";
 import Vote from "./Vote";
 import CommentAdder from "./CommentAdder";
 import CommentCard from "./CommentCard";
-// import Dropdown from "./Dropdown";
+import Dropdown from "./Dropdown";
 import Pagination from "./Pagination";
 import "../css/Article.css";
 
@@ -23,6 +23,7 @@ export class Article extends Component {
 
   fetchPageData = () => {
     const { article_id, user } = this.props;
+    const { page, sortBy } = this.state;
     fetchArticleById(article_id)
       .then(article => {
         if (user.username === article.author) {
@@ -34,9 +35,11 @@ export class Article extends Component {
       .catch(() => {
         navigate("/not-found");
       });
-    fetchData(`articles/${article_id}/comments`).then(({ comments }) => {
-      this.setState({ comments });
-    });
+    fetchQueries("p", page, "sort_by", sortBy, article_id).then(
+      ({ comments }) => {
+        this.setState({ comments });
+      }
+    );
   };
 
   componentDidMount() {
@@ -44,10 +47,23 @@ export class Article extends Component {
     user && this.fetchPageData();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { user } = this.props;
+    const { sortBy, page } = this.state;
     if (prevProps.user !== user) this.fetchPageData();
+    if (prevState.sortBy !== sortBy || prevState.page !== page)
+      this.updateComments();
   }
+
+  updateComments = () => {
+    const { article_id } = this.state.article;
+    const { page, sortBy } = this.state;
+    fetchQueries("p", page, "sort_by", sortBy, article_id).then(
+      ({ comments }) => {
+        this.setState({ comments, showCommentAdder: false });
+      }
+    );
+  };
 
   toggleCommentInput = event => {
     const { showCommentAdder } = this.state;
@@ -55,13 +71,6 @@ export class Article extends Component {
     showCommentAdder
       ? this.setState({ showCommentAdder: false })
       : this.setState({ showCommentAdder: true });
-  };
-
-  updateComments = () => {
-    const { article_id } = this.state.article;
-    fetchData(`articles/${article_id}/comments`).then(({ comments }) => {
-      this.setState({ comments, showCommentAdder: false });
-    });
   };
 
   handleDelete = event => {
@@ -76,22 +85,14 @@ export class Article extends Component {
       "most recent": "created_at",
       "most popular": "votes"
     };
-    const query = lookup[value];
-    fetchQueries("sort_by", query).then(({ comments }) => {
-      this.setState({ comments });
-    });
+    this.setState({ sortBy: lookup[value] });
   };
 
   setPage = direction => {
-    const { page } = this.state;
-    const { article_id } = this.state.article;
-    this.setState({ page: page + direction });
-    fetchQueries("p", page, article_id).then(({ comments }) => {
-      if (comments.length < 5) {
-        this.setState({ hasAllItems: true, comments });
-      } else {
-        this.setState({ comments });
-      }
+    this.setState(prevState => {
+      return {
+        page: prevState.page + direction
+      };
     });
   };
 
@@ -150,17 +151,14 @@ export class Article extends Component {
                 />
               )}
             </div>
-
-            {/* Work in progress */}
-            {/* <div className="sort">
+            <div className="sort">
               Sort by:
               <Dropdown
                 className="dropdown"
                 options={["", "most recent", "most popular"]}
                 onSelect={this.handleCommentSort}
               />
-            </div> */}
-
+            </div>
             {comments ? (
               comments.map(comment => (
                 <CommentCard

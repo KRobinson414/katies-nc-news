@@ -6,21 +6,35 @@ export const fetchData = async url => {
   return data;
 };
 
-export const fetchQueries = async (firstQuery, secondQuery, article_id) => {
+export const fetchQueries = async (
+  firstQuery,
+  secondQuery,
+  thirdQuery,
+  fourthQuery,
+  article_id
+) => {
   const url = article_id
-    ? `${baseURL}/articles/${article_id}/comments?${firstQuery}=${secondQuery}`
-    : `${baseURL}/articles?${firstQuery}=${secondQuery}`;
+    ? `${baseURL}/articles/${article_id}/comments?${firstQuery}=${secondQuery}?${thirdQuery}=${fourthQuery}`
+    : `${baseURL}/articles?${firstQuery}=${secondQuery}&${thirdQuery}=${fourthQuery}`;
 
   const { data } = await axios.get(url);
+  console.log(data);
   return data;
 };
 
-export const fetchArticlesByTopic = async (topic, firstQuery, secondQuery) => {
-  const url = firstQuery
-    ? `${baseURL}/topics/${topic}/articles?${firstQuery}=${secondQuery}`
-    : `${baseURL}/topics/${topic}/articles`;
-
-  const { data } = await axios.get(url);
+export const fetchArticlesByTopic = async (
+  topic,
+  firstQuery,
+  secondQuery,
+  thirdQuery,
+  fourthQuery
+) => {
+  console.log(
+    `articles?${firstQuery}=${secondQuery}?${thirdQuery}=${fourthQuery}`
+  );
+  const { data } = await axios.get(
+    `${baseURL}/topics/${topic}/articles?${firstQuery}=${secondQuery}&${thirdQuery}=${fourthQuery}`
+  );
   return data.articles;
 };
 
