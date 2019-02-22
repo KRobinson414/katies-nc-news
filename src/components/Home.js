@@ -12,6 +12,7 @@ export class Home extends Component {
     topics: [],
     articles: [],
     filterBy: "all topics",
+    sortBy: "created_at",
     isLoading: true,
     page: 1,
     hasAllItems: false
@@ -26,25 +27,46 @@ export class Home extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { filterBy, sortBy, page } = this.state;
+    if (prevState.filterBy !== filterBy) {
+      if (filterBy !== "all topics") {
+        fetchArticleByTopic(filterBy)
+          .then(({ articles }) => {
+            this.setState({ articles, isLoading: false });
+          })
+          .catch(() => {
+            navigate("/not-found");
+          });
+      } else {
+        fetchData("articles")
+          .then(({ articles }) => {
+            this.setState({ articles, isLoading: false });
+          })
+          .catch(() => {
+            navigate("/not-found");
+          });
+      }
+    }
+    if (prevState.sortBy !== sortBy) {
+      fetchQueries("sort_by", sortBy).then(({ articles }) => {
+        this.setState({ articles });
+      });
+    }
+    if (prevState.page !== page) {
+      fetchQueries("p", page).then(({ articles }) => {
+        if (articles.length < 5) {
+          this.setState({ hasAllItems: true, articles });
+        } else {
+          this.setState({ hasAllItems: false, articles });
+        }
+      });
+    }
+  }
+
   handleFilter = event => {
     const { value } = event.target;
-    if (value !== "all topics") {
-      fetchArticleByTopic(value)
-        .then(({ articles }) => {
-          this.setState({ articles, isLoading: false });
-        })
-        .catch(() => {
-          navigate("/not-found");
-        });
-    } else {
-      fetchData("articles")
-        .then(({ articles }) => {
-          this.setState({ articles, isLoading: false });
-        })
-        .catch(() => {
-          navigate("/not-found");
-        });
-    }
+    this.setState({ filterBy: value });
   };
 
   handleSort = event => {
@@ -55,24 +77,12 @@ export class Home extends Component {
       "most comments": "comment_count"
     };
     const query = lookup[value];
-    fetchQueries("sort_by", query).then(({ articles }) => {
-      this.setState({ articles });
-    });
+    this.setState({ sortBy: query });
   };
 
-  // Work in progress
   setPage = direction => {
     const { page } = this.state;
     this.setState({ page: page + direction });
-    console.log(page);
-    fetchQueries("p", page).then(({ articles }) => {
-      console.log(articles);
-      if (articles.length < 5) {
-        this.setState({ hasAllItems: true, articles });
-      } else {
-        this.setState({ articles });
-      }
-    });
   };
 
   render() {
