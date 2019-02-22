@@ -57,7 +57,6 @@ export class Article extends Component {
   updateComments = () => {
     const { article_id } = this.state.article;
     const { page, sortBy } = this.state;
-    console.log(page, sortBy);
     fetchQueries(page, sortBy, article_id).then(({ comments }) => {
       this.setState({ comments, showCommentAdder: false });
     });

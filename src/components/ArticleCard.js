@@ -11,9 +11,11 @@ export class ArticleCard extends Component {
 
   componentDidMount() {
     const { article_id } = this.props.article;
-    fetchData(`articles/${article_id}/comments`).then(({ comments }) => {
-      this.setState({ comments });
-    });
+    fetchData(`articles/${article_id}/comments?limit=100`).then(
+      ({ comments }) => {
+        this.setState({ comments });
+      }
+    );
   }
 
   render() {

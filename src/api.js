@@ -12,22 +12,12 @@ export const fetchQueries = async (page, sortBy, article_id) => {
     : `${baseURL}/articles?p=${page}&sort_by=${sortBy}`;
 
   const { data } = await axios.get(url);
-  console.log(data);
   return data;
 };
 
-export const fetchArticlesByTopic = async (
-  topic,
-  firstQuery,
-  secondQuery,
-  thirdQuery,
-  fourthQuery
-) => {
-  console.log(
-    `articles?${firstQuery}=${secondQuery}?${thirdQuery}=${fourthQuery}`
-  );
+export const fetchArticlesByTopic = async (topic, page, sortBy) => {
   const { data } = await axios.get(
-    `${baseURL}/topics/${topic}/articles?${firstQuery}=${secondQuery}&${thirdQuery}=${fourthQuery}`
+    `${baseURL}/topics/${topic}/articles?p=${page}&sort_by=${sortBy}`
   );
   return data.articles;
 };

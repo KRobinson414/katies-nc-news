@@ -48,7 +48,7 @@ export class Home extends Component {
             navigate("/not-found");
           });
       } else {
-        fetchArticlesByTopic(filterBy, "p", page, "sort_by", sortBy)
+        fetchArticlesByTopic(filterBy, page, sortBy)
           .then(articles => {
             if (articles < 5) {
               this.setState({ articles, hasAllItems: true });
