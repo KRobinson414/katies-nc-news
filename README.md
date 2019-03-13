@@ -15,7 +15,7 @@ Deployed project: https://katies-nc-news.netlify.com/
 
 ### Back-end API
 
-Github repo: (need to duplicate)
+Github repo: https://github.com/Rusty414/be-nc-news
 
 Deployed project: https://katies-nc-news.herokuapp.com/api
 
