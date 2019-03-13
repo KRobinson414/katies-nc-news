@@ -50,6 +50,15 @@ const Sidebar = ({ user, setUser }) => {
           />
           <p>Login to your account:</p>
           <Login setUser={setUser} />
+          <p className="user-list-title">Valid usernames:</p>
+          <ul className="user-list">
+            <li>jessjelly</li>
+            <li>weegembump</li>
+            <li>tickle122</li>
+            <li>grumpy19</li>
+            <li>happyamy2016</li>
+            <li>cooljmessy</li>
+          </ul>
         </div>
       )}
     </div>
