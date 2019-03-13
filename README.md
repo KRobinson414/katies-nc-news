@@ -78,7 +78,7 @@ This version of the site is hosted live on Netlify. To host your own version on 
 3. Run `netlify login` in your terminal to sign in to your Netlify account or create a new account at https://app.netlify.com/signup.
 4. Run `netlify deploy` and follow the instructions in the CLI to host the site.
 
-## Built with
+## Built with
 
 - [Create React App](https://github.com/facebook/create-react-app) - used to bootstrap the app and streamline the creation process.
 - [Axios](https://www.npmjs.com/package/axios) - used to send requests to the backend API
